@@ -1,0 +1,106 @@
+LAMMPS (7 Aug 2019)
+units lj
+atom_style atomic
+atom_modify map array
+lattice fcc 0.8442
+Lattice spacing in x,y,z = 1.6796 1.6796 1.6796
+region box block 0 4 0 4 0 4
+create_box 1 box
+Created orthogonal box = (0 0 0) to (6.71838 6.71838 6.71838)
+  1 by 1 by 1 MPI processor grid
+mass 1 1.0
+create_atoms 1 single 1.52 2.72 2.55
+Created 1 atoms
+  create_atoms CPU = 0.000176907 secs
+create_atoms 1 single 0.65 1.07 1.6
+Created 1 atoms
+  create_atoms CPU = 0.000241041 secs
+create_atoms 1 single 3.66 2.59 0.89
+Created 1 atoms
+  create_atoms CPU = 1.40667e-05 secs
+velocity all create 1.44 87287 loop geom
+pair_style lj/cut 2.5
+pair_coeff 1 1 1.0 1.0 2.5
+neighbor 0.3 bin
+neigh_modify delay 0 every 20 check no
+fix 1 all nve
+variable fx atom fx
+info all
+run 100
+Neighbor list info ...
+  update every 20 steps, delay 0 steps, check no
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 2.8
+  ghost atom cutoff = 2.8
+  binsize = 1.4, bins = 5 5 5
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/cut, perpetual
+      attributes: half, newton on
+      pair build: half/bin/atomonly/newton
+      stencil: half/bin/3d/newton
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 2.564 | 2.564 | 2.564 Mbytes
+Step Temp E_pair E_mol TotEng Press 
+       0         1.44            0            0         1.44   0.00949725 
+     100         1.44            0            0         1.44   0.00949725 
+Loop time of 0.000108957 on 1 procs for 100 steps with 3 atoms
+
+Performance: 396485629.759 tau/day, 917790.810 timesteps/s
+94.5% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 6.6757e-06 | 6.6757e-06 | 6.6757e-06 |   0.0 |  6.13
+Neigh   | 1.4067e-05 | 1.4067e-05 | 1.4067e-05 |   0.0 | 12.91
+Comm    | 3.2663e-05 | 3.2663e-05 | 3.2663e-05 |   0.0 | 29.98
+Output  | 1.1921e-05 | 1.1921e-05 | 1.1921e-05 |   0.0 | 10.94
+Modify  | 2.1219e-05 | 2.1219e-05 | 2.1219e-05 |   0.0 | 19.47
+Other   |            | 2.241e-05  |            |       | 20.57
+
+Nlocal:    3 ave 3 max 3 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    17 ave 17 max 17 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    1 ave 1 max 1 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 1
+Ave neighs/atom = 0.333333
+Neighbor list builds = 5
+Dangerous builds not checked
+write_dump all image snapshot.png type type zoom 1.0 modify backcolor white
+dump myDump all atom 10 dump.atom
+run 100
+Per MPI rank memory allocation (min/avg/max) = 3.564 | 3.564 | 3.564 Mbytes
+Step Temp E_pair E_mol TotEng Press 
+     100         1.44            0            0         1.44   0.00949725 
+     200    1.4692745 -0.040088194            0    1.4291863 0.0089161292 
+Loop time of 0.00069499 on 1 procs for 100 steps with 3 atoms
+
+Performance: 62159153.619 tau/day, 143886.930 timesteps/s
+62.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 2.0981e-05 | 2.0981e-05 | 2.0981e-05 |   0.0 |  3.02
+Neigh   | 1.5736e-05 | 1.5736e-05 | 1.5736e-05 |   0.0 |  2.26
+Comm    | 5.9843e-05 | 5.9843e-05 | 5.9843e-05 |   0.0 |  8.61
+Output  | 0.00051379 | 0.00051379 | 0.00051379 |   0.0 | 73.93
+Modify  | 4.1485e-05 | 4.1485e-05 | 4.1485e-05 |   0.0 |  5.97
+Other   |            | 4.315e-05  |            |       |  6.21
+
+Nlocal:    3 ave 3 max 3 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    7 ave 7 max 7 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    2 ave 2 max 2 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 2
+Ave neighs/atom = 0.666667
+Neighbor list builds = 5
+Dangerous builds not checked
+write_dump all image snapshot.png type type zoom 1.0 modify backcolor white
+Total wall time: 0:00:16
